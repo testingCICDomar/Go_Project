@@ -3,7 +3,7 @@ import logo from './unnamed.svg';
 import axios from 'axios';
 import './App.css';
 
-const apiUrl = `http://localhost:8080`;
+const apiUrl = `http://localhost:9000`;
 class App extends Component {
   state = {
     users: []
@@ -30,7 +30,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <button onClick={() => this.createUser()}>Create User</button>
+          <button onClick={() => this.createUser()}>Inzelni</button>
           <p>Users list:</p>
           <ul>
             {this.state.users.map(user => (
