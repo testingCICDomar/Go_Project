@@ -1,0 +1,2 @@
+docker-compose -p testJenkins up -d
+docker-compose -p testJenkins down
