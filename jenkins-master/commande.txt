@@ -1,2 +1,6 @@
-docker-compose -p testJenkins up -d
-docker-compose -p testJenkins down
+to start the stack :
+    docker-compose build
+    docker-compose -p testJenkins up -d
+
+to stop and delete the stack :
+    docker-compose -p testJenkins down
