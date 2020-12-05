@@ -1,6 +1,5 @@
 version: '3'
 services:
-  
   sonarqube:
     image: sonarqube:7.9-community 
     volumes:
@@ -21,7 +20,7 @@ services:
   db:
     image: postgres
     networks:
-      - jenkins-net
+      - App-net
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
@@ -29,6 +28,8 @@ services:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
 
+
+  
 volumes:
   sonarqube_conf:
   sonarqube_data:
