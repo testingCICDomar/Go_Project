@@ -5,7 +5,7 @@ const User = require("./src/User.model");
 const cors = require('cors');
 
 app.use(cors());
-const PORT = 9000;
+const PORT = 9500;
 
 app.get("/users", async (req, res) => {
   const users = await User.find();

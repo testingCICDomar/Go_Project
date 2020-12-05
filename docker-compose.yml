@@ -22,7 +22,7 @@ services:
   api:
     build: ./api
     ports:
-      - '9000:9000'
+      - '9500:9500'
     depends_on:
       - mongo
     networks:
@@ -34,9 +34,45 @@ services:
       - '27017:27017'
     networks:
       - jenkins-net
+
+  sonarqube:
+    image: sonarqube:7.9-community 
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+    networks:
+      - jenkins-net
+    ports:
+      - '9000:9000'
+    environment:
+      - sonar.jdbc.username=sonar
+      - sonar.jdbc.password=sonar
+      - sonar.jdbc.url=jdbc:postgresql://db:5432/sonar
+
+
+  db:
+    image: postgres
+    networks:
+      - jenkins-net
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
   
 volumes:
   jenkins-log:
   jenkins-data:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_bundled-plugins:
+  postgresql:
+  postgresql_data:
+
 networks:
   jenkins-net:
+    driver: bridge

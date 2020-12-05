@@ -3,7 +3,7 @@ import logo from './unnamed.svg';
 import axios from 'axios';
 import './App.css';
 
-const apiUrl = `http://localhost:9000`;
+const apiUrl = `http://localhost:9500`;
 class App extends Component {
   state = {
     users: []
