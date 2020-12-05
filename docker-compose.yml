@@ -1,40 +1,6 @@
 version: '3'
 services:
-  master:
-    build: ./jenkins-master
-    ports:
-      - "50000:50000"
-      - "8080:8080"
-    volumes:
-      - jenkins-log:/var/log/jenkins
-      - jenkins-data:/var/jenkins_home
-    networks:
-      - jenkins-net
-
-  ui:
-    build: ./ui
-    ports:
-      - '3000:3000'
-    depends_on:
-      - api
-    networks:
-      - jenkins-net
-  api:
-    build: ./api
-    ports:
-      - '9500:9500'
-    depends_on:
-      - mongo
-    networks:
-      - jenkins-net
-
-  mongo:
-    image: mongo
-    ports:
-      - '27017:27017'
-    networks:
-      - jenkins-net
-
+  
   sonarqube:
     image: sonarqube:7.9-community 
     volumes:
@@ -43,7 +9,7 @@ services:
       - sonarqube_extensions:/opt/sonarqube/extensions
       - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
     networks:
-      - jenkins-net
+      - App-net
     ports:
       - '9000:9000'
     environment:
@@ -63,26 +29,14 @@ services:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
 
-  nexus:
-    image: sonatype/nexus3
-    volumes:
-      - nexus-data:/sonatype-work
-    ports:
-      - "8081:8081"
-    networks:
-      - jenkins-net
-  
 volumes:
-  jenkins-log:
-  jenkins-data:
   sonarqube_conf:
   sonarqube_data:
   sonarqube_extensions:
   sonarqube_bundled-plugins:
   postgresql:
   postgresql_data:
-  nexus-data:
+
 
 networks:
-  jenkins-net:
-    driver: bridge
+  App-net:
