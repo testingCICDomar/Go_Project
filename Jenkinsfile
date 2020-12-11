@@ -29,8 +29,8 @@ pipeline {
                         touch result.txt
                         var=$(ssh ec2-user@3.133.92.205 'bash forJenkins/dirtest.sh')
                     '''
-                    echo "var is ${var}"
                 }
+                echo "var is ${var}"
             }
             
         }
