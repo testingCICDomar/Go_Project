@@ -31,9 +31,10 @@ pipeline {
                         echo "${var}" > /tmp/testResult.txt
                         sed -i '2d' /tmp/testResult.txt
                         chmod 777 /tmp/testResult.txt
+                        env.TEST_var = $var
                     '''
-                    echo "${env.var}"
-                    env.TEST_var = var
+                    echo "${env.TEST_var}"
+                    
                     /*
                    env.var = 'KOO' //readFile (file: "/tmp/testResult.txt")
                    echo "${env.var}"
