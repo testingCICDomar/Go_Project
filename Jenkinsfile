@@ -28,8 +28,9 @@ pipeline {
                         ssh -tt ec2-user@3.133.92.205 'Last_Branch=$(tail -n 1 forJenkins/branches.txt );cd application;git checkout ${last_branch};echo '${last_branch}';exit'
                         touch result.txt
                         var=$(ssh ec2-user@3.133.92.205 'bash forJenkins/dirtest.sh')
+                        env.var = "${var}"
                     '''
-                    env.var = ${var}
+                    
                 }
                 echo "var is ${env.var}"
             }
