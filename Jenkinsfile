@@ -45,7 +45,9 @@ pipeline {
 
             }
             
-        }
+        
+
+
         stage(tesst){
             when {
                 expression { env.var == 'False'}
@@ -67,6 +69,6 @@ pipeline {
                 }
             }
         }
-
-    }
 }
+}
+    
