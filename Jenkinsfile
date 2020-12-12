@@ -32,7 +32,7 @@ pipeline {
                         sed -i '2d' /tmp/testResult.txt
                         chmod 777 /tmp/testResult.txt
                     '''
-                   env.var = readFile (file: "/tmp/testResult.txt")
+                   env.var = 'KOO' //readFile (file: "/tmp/testResult.txt")
                    echo "${env.var}"
                    echo "${env.var}"
                    if (var == 'KOO ') {
