@@ -33,6 +33,7 @@ pipeline {
                     '''
                    env.var = readFile (file: "/tmp/testResult.txt")
                    echo "${env.var}"
+                   echo "${env.var}"
                    if (var == 'KOO ') {
                         echo "${env.var} ===================="
                         error "sorry next time !"
