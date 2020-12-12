@@ -34,9 +34,9 @@ pipeline {
                    env.var = readFile (file: "/tmp/testResult.txt")
                    
                 } 
+                }
                 if (env.var == 'False') {
                     error "Missing Repo or file !!"
-                }
                 echo "==========================================================="
                 echo "=============test result is ${env.var} ===================="
                 echo "==========================================================="
