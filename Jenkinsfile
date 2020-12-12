@@ -25,14 +25,11 @@ pipeline {
             steps {
                 script {
                     sh ("""
-                        ssh -tt ec2-user@3.133.92.205 'Last_Branch=$(tail -n 1 forJenkins/branches.txt );cd application;git checkout ${last_branch};echo '${last_branch}';exit'
-                        touch result.txt
-                        var=$(ssh ec2-user@3.133.92.205 'bash forJenkins/dirtest.sh')
-                        echo "${var}" > /tmp/testResult.txt
-                        sed -i '2d' /tmp/testResult.txt
-                        chmod 777 /tmp/testResult.txt
-                        env.TEST_var = ${var}
-                    """)
+                        ssh -tt ec2-user@3.133.92.205 'Last_Branch=$(tail -n 1 forJenkins/branches.txt );cd application;git checkout ${last_branch};echo '${last_branch}';exit'""")
+                        sh (""" touch result.txt """)
+                        sh (""" var=$(ssh ec2-user@3.133.92.205 'bash forJenkins/dirtest.sh') """)
+                        sh ("""
+                        env.TEST_var = ${var} """)
                     echo "${env.TEST_var}"
                     
                     /*
