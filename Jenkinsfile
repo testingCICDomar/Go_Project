@@ -32,8 +32,8 @@ pipeline {
                         chmod 777 /tmp/testResult.txt
                     '''
                    env.var = readFile (file: "/tmp/testResult.txt")
-                   echo '${env.var}'
-                   if (env.var == 'KOO ') {
+                   
+                   if (var == 'KOO ') {
                         echo "${env.var} ===================="
                         error "sorry next time !"
                    }else { echo "jawek behi !"}
