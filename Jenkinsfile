@@ -47,7 +47,7 @@ pipeline {
                     if (env.SELECT_var == 'KOO ') {
                         echo "${env.var} ===================="
                         error "sorry next time !"
-                   }else { echo "jawek behi !"} */
+                   }else { echo "jawek behi !"}
                   
                 }
                 echo "==========================================================="
