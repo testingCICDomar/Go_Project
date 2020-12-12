@@ -47,6 +47,7 @@ pipeline {
             }
             steps {
                 script {
+                    echo "${env.var} ===================="
                      error "sorry next time !"
                 }
             }
