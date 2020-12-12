@@ -32,32 +32,30 @@ pipeline {
                         sed -i '2d' /tmp/testResult.txt
                         chmod 777 /tmp/testResult.txt
                     '''
+                    /*
                    env.var = 'KOO' //readFile (file: "/tmp/testResult.txt")
-                   /* echo "${env.var}"
+                   echo "${env.var}"
                    echo "${env.var}"
                    if (env.var == 'KOO ') {
                         echo "${env.var} ===================="
                         error "sorry next time !"
-                   }else { echo "jawek behi !"}
-                  */ 
+                   }else { echo "jawek behi !"} */
+                   env.var = readFile (file: "/tmp/testResult.txt")
+                   env.SELECT_var = input message: 'User input required', ok: 'Select',
+                            parameters: [choice(name: 'push', choices: env.var, description: 'What is the opt to slect?')]
+
+                    if (env.SELECT_var == 'KOO ') {
+                        echo "${env.var} ===================="
+                        error "sorry next time !"
+                   }else { echo "jawek behi !"} */
+                  
                 }
                 echo "==========================================================="
                 echo "============================${env.var} ===================="
                 echo "==========================================================="
                 
             }
-        }post {
-            always {
-                 script {
-                    if (env.var == 'KOO') {
-                        error "sorry next time !"
-                    }
-                }
-            }
-        }
-            
-        
-
+        }        
         stage(Sonar){
             when {
                 expression { env.CTB == 'Continue'}
