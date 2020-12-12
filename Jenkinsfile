@@ -32,7 +32,7 @@ pipeline {
                         chmod 777 /tmp/testResult.txt
                     '''
                    env.var = readFile (file: "/tmp/testResult.txt")
-                   if (env.var == False) {
+                   if (env.var == 'False') {
                     error "Missing Repo or file !!"
                 } 
                 }
