@@ -50,7 +50,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'echo 'sonar starting'
+                    sh 'echo "sonar starting" '
                 }
             }
         }
