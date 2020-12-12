@@ -42,7 +42,8 @@ pipeline {
                    }else { echo "jawek behi !"} */
                    env.TEST_var = readFile(file: "/tmp/testResult.txt")
                    echo "${env.TEST_var}"
-                   if (env.TEST_var == 'KOO') {
+                   if (env.TEST_var == 'KOO
+') {
                         echo "${env.TEST_var} ===================="
                         error "sorry next time !"
                    }else { echo "jawek behi !"}
