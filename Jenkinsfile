@@ -36,9 +36,23 @@ pipeline {
                 echo "==========================================================="
                 echo "=============test result is ${env.var} ===================="
                 echo "==========================================================="
+                if (${env.var} == False) {
+                    error "Missing Repo or file !!"
+                }
 
             }
             
+        }
+
+        stage(Sonar){
+            when {
+                expression { env.CTB == 'Continue'}
+            }
+            steps {
+                script {
+                    sh 'echo 'sonar starting'
+                }
+            }
         }
 
     }
