@@ -40,12 +40,10 @@ pipeline {
                         echo "${env.var} ===================="
                         error "sorry next time !"
                    }else { echo "jawek behi !"} */
-                   env.var = readFile (file: "/tmp/testResult.txt").trim()
-                   env.SELECT_var = input message: 'User input required', ok: 'Select',
-                            parameters: [choice(name: 'push', choices: env.var, description: 'What is the opt to slect?')]
-                    echo "${#env.SELECT_var}"
-                    if (env.SELECT_var == 'KOO ') {
-                        echo "${env.var} ===================="
+                   env.TEST_var = readFile(file: "/tmp/testResult.txt")
+                   echo "${env.TEST_var}"
+                   if (env.TEST_var == 'KOO') {
+                        echo "${env.TEST_var} ===================="
                         error "sorry next time !"
                    }else { echo "jawek behi !"}
                   
