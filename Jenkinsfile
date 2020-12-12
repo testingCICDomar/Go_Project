@@ -32,6 +32,10 @@ pipeline {
                         chmod 777 /tmp/testResult.txt
                     '''
                    env.var = readFile (file: "/tmp/testResult.txt")
+                   if (env.var == 'False') {
+                       echo "${env.var} ===================="
+                     error "sorry next time !"
+                   }else { echo "jawek behi !"}
                    
                 }
                 echo "==========================================================="
@@ -41,17 +45,7 @@ pipeline {
             }
         }
             
-        stage(test){
-            when {
-                expression { env.var == "False"}
-            }
-            steps {
-                script {
-                    echo "${env.var} ===================="
-                     error "sorry next time !"
-                }
-            }
-        }
+        
 
         stage(Sonar){
             when {
