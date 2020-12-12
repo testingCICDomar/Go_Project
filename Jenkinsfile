@@ -32,6 +32,8 @@ pipeline {
                         sed -i '2d' /tmp/testResult.txt
                         chmod 777 /tmp/testResult.txt
                     '''
+                    echo ${var}
+                    env.TEST_var = var
                     /*
                    env.var = 'KOO' //readFile (file: "/tmp/testResult.txt")
                    echo "${env.var}"
@@ -40,12 +42,6 @@ pipeline {
                         echo "${env.var} ===================="
                         error "sorry next time !"
                    }else { echo "jawek behi !"} */
-                   env.TEST_var = readFile(file: "/tmp/testResult.txt")
-                   echo "${env.TEST_var}"
-                   if (env.TEST_var == 'KOO') {
-                        echo "${env.TEST_var} ===================="
-                        error "sorry next time !"
-                   }else { echo "jawek behi !"}
                   
                 }
                 echo "==========================================================="
