@@ -35,8 +35,9 @@ pipeline {
                    
                 } 
                 }
-                if (env.var == 'False') {
-                    error "Missing Repo or file !!"
+                
+                //if (env.var == 'False') {
+                //    error "Missing Repo or file !!"
                 echo "==========================================================="
                 echo "=============test result is ${env.var} ===================="
                 echo "==========================================================="
@@ -44,6 +45,16 @@ pipeline {
 
             }
             
+        }
+        stage(tesst){
+            when {
+                expression { env.var == 'False'}
+            }
+            steps {
+                script {
+                    error "Missing Repo or file !!"
+                }
+            }
         }
 
         stage(Sonar){
