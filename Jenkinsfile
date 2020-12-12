@@ -29,7 +29,7 @@ pipeline {
                         touch result.txt
                         var=$(ssh ec2-user@3.133.92.205 'bash forJenkins/dirtest.sh')
                         echo ${var} > /tmp/testResult.txt
-                        sed -i '2d' file
+                        sed -i '2d' /tmp/testResult.txt
                         chmod 777 /tmp/testResult.txt
                     '''
                    env.var = readFile (file: "/tmp/testResult.txt")
