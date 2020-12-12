@@ -43,7 +43,7 @@ pipeline {
             
         stage(test){
             when {
-                expression { env.var === 'False'}
+                expression { env.var == "False"}
             }
             steps {
                 script {
