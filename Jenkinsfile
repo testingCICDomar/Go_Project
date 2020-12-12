@@ -42,7 +42,9 @@ pipeline {
         }
             
         stage(test){
-            
+            when {
+                expression { env.var === 'False'}
+            }
             steps {
                 script {
                     echo "${env.var} ===================="
